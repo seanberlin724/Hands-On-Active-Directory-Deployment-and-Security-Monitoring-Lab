@@ -21,7 +21,7 @@ This project involves creating a home lab to learn Active Directory and IT secur
 
 ## Steps
 ### 1. Building the Network Diagram
-I created a detailed network diagram using draw.io, visualizing the connections between various components such as servers, computers, switches, and routers. This diagram serves as a reference for understanding data flow and enhances my ability to discuss technical setups during interviews. Important details, including IP addresses and domain names, were documented for clarity in the lab setup.
+I created a detailed network diagram using draw.io, visualizing the connections between various components such as servers, computers, switches, and routers. This diagram serves as a reference for understanding data flow and enhances my ability to better understand technical setups. Important details, including IP addresses and domain names, were documented for clarity in the lab setup.
 <img src="Images/Diagram.png">
 
 *Ref 1: Network Diagram via Draw.io*
