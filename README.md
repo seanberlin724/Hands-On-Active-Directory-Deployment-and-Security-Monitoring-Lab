@@ -28,10 +28,10 @@ I created a detailed network diagram using draw.io, visualizing the connections 
 
 
 ### 2. Installing Virtual Machines
-In this step, I installed essential virtual machines within VirtualBox, including Windows 10, Kali Linux, Windows Server 2022, and Ubuntu Server. I followed specific instructions for each operating system, ensuring that all necessary dependencies were met. The use of snapshots allowed me to experiment without the risk of permanent mistakes.
-<img src="Images/2.png">
+In this step, I installed essential virtual machines within VirtualBox, including Windows 10, Kali Linux, Windows Server 2022, and Ubuntu Server (Splunk Server). I followed specific instructions for each operating system, ensuring that all necessary dependencies were met. Tip: It is recommended to use snapshots of the VMs to allow for experimentation without the risk of permanent mistakes.
+<img src="Images/VM Virtual Box Manager.png">
 
-*Ref 2: Virtual Machine Installation Process*
+*Ref 2: VM VirtualBox Manager of Active Machines Needed*
 
 ### 3. Configuring Sysmon and Splunk
 I installed and configured Sysmon for logging system activity and set up Splunk as the Security Information and Event Management (SIEM) tool. This involved creating an 'endpoint' index in Splunk, managing data reception, and verifying that incoming events were logged correctly. This configuration is crucial for effective security monitoring and telemetry analysis.
@@ -56,11 +56,7 @@ I conducted a brute force attack using Kali Linux, targeting the Remote Desktop 
 
 
 
-### 6. Troubleshooting
-Finally, I focused on troubleshooting common errors encountered throughout the project. This included verifying DNS settings, ensuring proper network communication with Splunk, and managing DHCP addresses. I documented solutions to these issues, fostering a collaborative approach to problem-solving.
-<img src="Images/6.png">
 
-*Ref 6: Common Troubleshooting Steps*
 
 
 
