@@ -79,6 +79,26 @@ First, I adjusted the network settings and checked them using the command prompt
 *Ref 8: Adjust IP for Target Machine*
 
 
+The next step is to install Splunk Universal Forwarder and Sysmon on both the target machine and server. The download is available on splunk.com. The only significant change made during installation was setting the Receiving Indexer to the IPv4 of "192.168.10.10" and the port to "9997".
+
+<img src="Images/Splunk Universal Forwarder.png">
+
+*Ref 9: Splunk Universal Forwarder*
+
+
+As far as the Sysmon installation, the download is available via "https://learn.microsoft.com/en-us/sysinternals/downloads/sysmon". The configuration file, "sysmonconfig.xml", needed can be found at "https://github.com/olafhartong/sysmon-modular/blob/master/sysmonconfig.xml". I then opened Windows PowerShell with Administrator privileges and changed it to the Sysmon directory. The next command installs Sysmon with the proper configuration file.
+<img src="Images/Sysmon Installation.png">
+
+*Ref 10: Sysmon Installation*
+
+
+The next part is the most important as the Splunk Forwarder needs to be instructed on what we want to send over to our Splunk server. This is achieved by configuring a file called "inputs.conf". The file content can be found at "https://github.com/MyDFIR/Active-Directory-Project". I then copied it into a notepad file with administrator privileges and saved it under the local file path as seen in the image.  This file instructs the Splunk Forwarder to push event-related applications, security, system, and Sysmon, over to the Splunk Server. Note that the "index" is pointed to the "endpoint" meaning whatever events that fall under these categories will be sent over to Splunk and placed under the index called "endpoint".
+
+<img src="Images/Inputs conf.png">
+
+*Ref 10: Inputs.conf*
+
+
 ### 5. Configuring Active Directory
 In this phase, I installed Active Directory on Windows Server, promoted it to a domain controller, and created organizational units and users. I set a static IP address, verified connectivity, and successfully joined target machines to the new domain. This hands-on experience significantly enhanced my understanding of domain management and security considerations.
 <img src="Images/4.png">
