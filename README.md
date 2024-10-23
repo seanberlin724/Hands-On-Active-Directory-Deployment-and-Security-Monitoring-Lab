@@ -142,10 +142,17 @@ I then configured Active Directory by creating a new domain with the root domain
 *Ref 19: AD Configuration*
 
 
-I created two dummy departments aka organizational units called "IT" and "HR". I created and added the users "Jenny Smith" and "Terry Smith" to their respective departments.
+I created two dummy departments aka Organizational Units called "IT" and "HR". I created and added the users "Jenny Smith" and "Terry Smith" to their respective departments.
 <img src="Images/Add Users and Groups to AD.png">
 
 *Ref 20: Add Users and Groups to AD*
+
+
+I then joined the Windows target machine to the newly created domain "mydfir.local". Ensure that the DNS Server is pointing to the domain controller "192.168.10.7".
+<img src="Images/Join mydfir Domain.png">
+
+*Ref 20: Join mydfir Domain*
+
 
 ### 6. Brute Force Attack
 I conducted a brute force attack using Kali Linux, targeting the Remote Desktop Protocol (RDP) on a Windows machine. This step included setting up Kali, installing the crowbar tool, and utilizing a wordlist for password attempts. I analyzed the generated telemetry with Splunk to gain insights into the attack process, improving my understanding of attacker behaviors and detection capabilities.
