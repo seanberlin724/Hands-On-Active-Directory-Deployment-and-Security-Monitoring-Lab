@@ -106,9 +106,9 @@ The next step is to restart Splunk's Universal Forwarder Service and set the "Lo
 
 
 Now, the Splunk server configuration can be finalized. I logged into the Splunk web portal and created a new index called "endpoint". This index will collect all of the events being sent over as specified in the "inputs.conf" file.
-<img src="Images/Create Index.png">
+<img src="Images/Create index endpoint.png">
 
-*Ref 13: Create Index*
+*Ref 13: Create index endpoint*
 
 
 
