@@ -96,8 +96,31 @@ The next part is the most important as the Splunk Forwarder needs to be instruct
 
 <img src="Images/Inputs conf.png">
 
-*Ref 10: Inputs.conf*
+*Ref 11: Inputs.conf*
 
+
+The next step is to restart Splunk's Universal Forwarder Service and set the "Log on as" option to "Local System Account". This ensures that logs are able to be collected properly in accordance with account permissions.
+<img src="Images/Adjust Services.png">
+
+*Ref 12: Adjust Services*
+
+
+Now, the Splunk server configuration can be finalized. I logged into the Splunk web portal and created a new index called "endpoint". This index will collect all of the events being sent over as specified in the "inputs.conf" file.
+<img src="Images/Create Index.png">
+
+*Ref 13: Create Index*
+
+
+
+Next, to enable the Splunk server to receive the data, a new receiving port must be added. In this case, it is port "9997." Data should now be seen coming in from the Windows 10 machine if everything is set up correctly. 
+<img src="Images/Add Port 9997.png">
+
+*Ref 14: Add Port 9997*
+
+The specified events from the "inputs.conf" can be seen when viewing the "endpoint" index.
+<img src="Images/Index Endpoint.png">
+
+*Ref 15: Index Endpoint*
 
 ### 5. Configuring Active Directory
 In this phase, I installed Active Directory on Windows Server, promoted it to a domain controller, and created organizational units and users. I set a static IP address, verified connectivity, and successfully joined target machines to the new domain. This hands-on experience significantly enhanced my understanding of domain management and security considerations.
