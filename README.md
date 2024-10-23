@@ -56,17 +56,28 @@ Next, I mounted the shared folder onto a self-created directory called "share". 
 
 *Ref 6: Splunk Installer Package Installed*
 
-I then changed to the directory where splunk is located. It is shown that all the user and group permissions belong to "splunk". This is beneficial as it limits the permissions to that user. I then changed into the user "splunk" to access the binaries and run the splunk installer. 
+I then changed to the directory where splunk is located. It is shown that all the user and group permissions belong to "splunk". This is beneficial as it limits the permissions to that user. I then changed into the user "splunk" to access the binaries and run the splunk installer.
+
 <img src="Images/Run Splunk Installer.png">
 
 *Ref 7: Run Splunk Installer*
 
-Lastly, I performed a command to make sure Splunk starts up every time the VM reboots. In other words, this makes it so that anytime the VM reboots, Splunk will run with the user "splunk".
-<img src="Images/Enable Splunk at Startr.png">
 
-*Ref 7: Enable Splunk at Startr*
+
+Lastly, I performed a command to make sure Splunk starts up every time the VM reboots. In other words, this makes it so that anytime the VM reboots, Splunk will run with the user "splunk".
+
+<img src="Images/Enable Splunk at Start.png">
+
+*Ref 8: Enable Splunk at Start*
 
 ### 4. Configuring Sysmon for Windows 10 VM and Windows Server
+The following procedure is performed on the Windows 10 VM (target-pc) but the steps are the same for the Windows Server as well.
+First, I adjusted the network settings and checked them using the command prompt.
+
+<img src="Images/Adjust IP for Target Machine.png">
+
+*Ref 8: Adjust IP for Target Machine*
+
 
 ### 5. Configuring Active Directory
 In this phase, I installed Active Directory on Windows Server, promoted it to a domain controller, and created organizational units and users. I set a static IP address, verified connectivity, and successfully joined target machines to the new domain. This hands-on experience significantly enhanced my understanding of domain management and security considerations.
