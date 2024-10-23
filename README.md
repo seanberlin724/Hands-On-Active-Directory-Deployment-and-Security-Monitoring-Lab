@@ -76,59 +76,76 @@ First, I adjusted the network settings and checked them using the command prompt
 
 <img src="Images/Adjust IP for Target Machine.png">
 
-*Ref 8: Adjust IP for Target Machine*
+*Ref 9: Adjust IP for Target Machine*
 
 
 The next step is to install Splunk Universal Forwarder and Sysmon on both the target machine and server. The download is available on splunk.com. The only significant change made during installation was setting the Receiving Indexer to the IPv4 of "192.168.10.10" and the port to "9997".
 
 <img src="Images/Splunk Universal Forwarder.png">
 
-*Ref 9: Splunk Universal Forwarder*
+*Ref 10: Splunk Universal Forwarder*
 
 
 As far as the Sysmon installation, the download is available via "https://learn.microsoft.com/en-us/sysinternals/downloads/sysmon". The configuration file, "sysmonconfig.xml", needed can be found at "https://github.com/olafhartong/sysmon-modular/blob/master/sysmonconfig.xml". I then opened Windows PowerShell with Administrator privileges and changed it to the Sysmon directory. The next command installs Sysmon with the proper configuration file.
 <img src="Images/Sysmon Installation.png">
 
-*Ref 10: Sysmon Installation*
+*Ref 11: Sysmon Installation*
 
 
 The next part is the most important as the Splunk Forwarder needs to be instructed on what we want to send over to our Splunk server. This is achieved by configuring a file called "inputs.conf". The file content can be found at "https://github.com/MyDFIR/Active-Directory-Project". I then copied it into a notepad file with administrator privileges and saved it under the local file path as seen in the image.  This file instructs the Splunk Forwarder to push event-related applications, security, system, and Sysmon, over to the Splunk Server. Note that the "index" is pointed to the "endpoint" meaning whatever events that fall under these categories will be sent over to Splunk and placed under the index called "endpoint".
 
 <img src="Images/Inputs conf.png">
 
-*Ref 11: Inputs.conf*
+*Ref 12: Inputs.conf*
 
 
 The next step is to restart Splunk's Universal Forwarder Service and set the "Log on as" option to "Local System Account". This ensures that logs are able to be collected properly in accordance with account permissions.
 <img src="Images/Adjust Services.png">
 
-*Ref 12: Adjust Services*
+*Ref 13: Adjust Services*
 
 
 Now, the Splunk server configuration can be finalized. I logged into the Splunk web portal and created a new index called "endpoint". This index will collect all of the events being sent over as specified in the "inputs.conf" file.
 <img src="Images/Create index endpoint.png">
 
-*Ref 13: Create index endpoint*
+*Ref 14: Create index endpoint*
 
 
 
 Next, to enable the Splunk server to receive the data, a new receiving port must be added. In this case, it is port "9997." Data should now be seen coming in from the Windows 10 machine if everything is set up correctly. 
 <img src="Images/Add Port 9997.png">
 
-*Ref 14: Add Port 9997*
+*Ref 15: Add Port 9997*
 
 The specified events from the "inputs.conf" can be seen when viewing the "endpoint" index.
 <img src="Images/Index Endpoint.png">
 
-*Ref 15: Index Endpoint*
+*Ref 16: Index Endpoint*
 
-### 5. Configuring Active Directory
+### 5. Install and Configure Active Directory on Windows Server
 In this phase, I installed Active Directory on Windows Server, promoted it to a domain controller, and created organizational units and users. I set a static IP address, verified connectivity, and successfully joined target machines to the new domain. This hands-on experience significantly enhanced my understanding of domain management and security considerations.
-<img src="Images/4.png">
 
-*Ref 4: Active Directory Configuration Steps*
+ To start, I began by setting a static IP address and verifying connectivity.
+<img src="Images/Adjust IP for Windows Server.png">
+
+*Ref 17: Adjust IP for Windows Server*
 
 
+I then installed Active Directory (AD DS) as a Role-based installation.
+<img src="Images/Install AD DS.png">
+
+*Ref 18: Install AD DS*
+
+I then configured Active Directory by creating a new domain with the root domain name being "mydfir.local"
+<img src="Images/AD Configuration.png">
+
+*Ref 19: AD Configuration*
+
+
+I created two dummy departments aka organizational units called "IT" and "HR". I created and added the users "Jenny Smith" and "Terry Smith" to their respective departments.
+<img src="Images/Add Users and Groups to AD.png">
+
+*Ref 20: Add Users and Groups to AD*
 
 ### 6. Brute Force Attack
 I conducted a brute force attack using Kali Linux, targeting the Remote Desktop Protocol (RDP) on a Windows machine. This step included setting up Kali, installing the crowbar tool, and utilizing a wordlist for password attempts. I analyzed the generated telemetry with Splunk to gain insights into the attack process, improving my understanding of attacker behaviors and detection capabilities.
