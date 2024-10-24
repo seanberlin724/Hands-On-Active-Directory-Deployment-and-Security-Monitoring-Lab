@@ -177,7 +177,7 @@ Following, I copied the "rockyou.txt" file into the "ad-project" directory. I th
 Following I edited the "passwords.txt" file and added the password of the designated target machine. In this case, I targeted the account "tsmith" logged in as a user on the Windows 10 VM with the password of "Basketball1!!!1".
 <img src="Images/Edit passwords file.png">
 
-*Ref 23: Edit passwords file.png*
+*Ref 24: Edit passwords file.png*
 
 
 
@@ -185,7 +185,7 @@ Following I edited the "passwords.txt" file and added the password of the design
 Before launching the attack, I enabled RDP on the target machine while signed in as the user "tsmith". 
 <img src="Images/Enable RDP.png">
 
-*Ref 24: Enable RDP.png*
+*Ref 25: Enable RDP.png*
 
 
 I then performed the attack on the target machine.
@@ -198,13 +198,81 @@ Explanation of command used:
 
 <img src="Images/Attack Command.png">
 
-*Ref 24: Attack Command.png*
+*Ref 26: Attack Command*
 
-### 7. Brute Force Attack Analyzed using Splunk
+### 7. Brute Force Attack Analysis using Splunk
+I navigated to the Splunk Forwarder and logged in. I then performed a search specifying the "endpoint" index and narrowed down the results by including "tsmith". The EventCode field showcases different values that can be searched for analysis purposes. The EventCode 4625 occurred 20 times.
+
+<img src="Images/Splunk Event Code.png">
+
+*Ref 27: Splunk Event Code*
+
+
+Log Event ID 4625 specifies a failed login attempt as shown in the screenshot. This aligns with the brute force attack as there were 20 incorrect passwords in the "passwords.txt" file.
+
+<img src="Images/Log Event ID 4625.png">
+
+*Ref 28: Log Event ID 4625*
 
 
 
-### 8. Brute Force Attack Analyzed using Atomic Red Team
+Log Event ID 4624 specifies a successful log-on.
+
+<img src="Images/Log Event ID 4624.png">
+
+*Ref 29: Log Event ID 4624*
+
+
+By expanding the event, the workstation "kali" can be seen as the workstation name along with the IP of the Kali VM.
+
+<img src="Images/Expand Event.png">
+
+*Ref 30: Expand Event*
+
+### 8. Brute Force Attack Analysis using Atomic Red Team
+
+I first set an exclusion for the entire C Drive to ensure Microsoft Defender will not detect and remove any of the files from Atomic Red Team.
+
+<img src="Images/Add Exclusion.png">
+
+*Ref 31: Add Exclusion*
+
+
+I then opened PowerShell as administrator and ran the following commands to install the tool Atomic Red Team from the GitHub portfolio "https://github.com/redcanaryco/invoke-atomicredteam/blob/master/install-atomicredteam.ps1". 
+
+<img src="Images/Install ATR.png">
+
+*Ref 32: Install ATR*
+
+
+By navigating to the "atomcis" directory there is a list of technique IDs that map back to MITRE Attack Framework. For example, I examined "T1136.001" which is a Persistence tactic of "Create Account" specifically "Local Account".
+<img src="Images/Atomics T1136.png">
+
+*Ref 33: Atomics T1136*
+
+
+
+
+<img src="Images/MITRE Framework.png">
+
+*Ref 34: MITRE Framework*
+
+
+
+
+To generate telemetry for the atomic the following command is used specifying for "T1136.001". It is important to note the "User name" created is "NewLocalUser".
+
+<img src="Images/Atomic Telemetry.png">
+
+*Ref 35: Atomic Telemetry*
+
+
+I then went back to the Splunk web portal and searched specifically for "NewLocalUser".However, no events show up. This means that the domain is blind to this activity. In other words, if an attacker compromised the system and created a local account with the current settings, it would not detect that activity. This is a major benefit to Atomic Red Team as it will identify the gaps and visibility for you. As well as ATR will generate the telemetry to see if the activity can be detected.
+
+<img src="Images/Splunk NewLocalUser Search.png">
+
+*Ref 36: Splunk NewLocalUser Search*
+
 
 
 
