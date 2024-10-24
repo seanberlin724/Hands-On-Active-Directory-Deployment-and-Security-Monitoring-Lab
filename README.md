@@ -267,7 +267,7 @@ To generate telemetry for the atomic the following command is used specifying fo
 *Ref 35: Atomic Telemetry*
 
 
-I then went back to the Splunk web portal and searched specifically for "NewLocalUser".However, no events show up. This means that the domain is blind to this activity. In other words, if an attacker compromised the system and created a local account with the current settings, it would not detect that activity. This is a major benefit to Atomic Red Team as it will identify the gaps and visibility for you. As well as ATR will generate the telemetry to see if the activity can be detected.
+I then went back to the Splunk web portal and searched specifically for "NewLocalUser". However, no events show up. This means that the domain is blind to this activity. In other words, if an attacker compromised the system and created a local account with the current settings, it would not detect that activity. This is a major benefit to Atomic Red Team as it will identify the gaps and visibility for you. As well as ATR will generate the telemetry to see if the activity can be detected.
 
 <img src="Images/Splunk NewLocalUser Search.png">
 
