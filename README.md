@@ -148,19 +148,61 @@ I created two dummy departments aka Organizational Units called "IT" and "HR". I
 *Ref 20: Add Users and Groups to AD*
 
 
-I then joined the Windows target machine to the newly created domain "mydfir.local". Ensure that the DNS Server is pointing to the domain controller "192.168.10.7".
+I then joined the Windows target machine to the newly created domain "mydfir.local". Ensure that the DNS Server is pointing to the domain controller "192.168.10.7" to allow for the mydfir.local server to be resolved properly.
 <img src="Images/Join mydfir Domain.png">
 
 *Ref 20: Join mydfir Domain*
 
 
-### 6. Brute Force Attack
-I conducted a brute force attack using Kali Linux, targeting the Remote Desktop Protocol (RDP) on a Windows machine. This step included setting up Kali, installing the crowbar tool, and utilizing a wordlist for password attempts. I analyzed the generated telemetry with Splunk to gain insights into the attack process, improving my understanding of attacker behaviors and detection capabilities.
-<img src="Images/5.png">
+### 6. Kali Linux Brute Force Attack
+I conducted a brute force attack using Kali Linux, targeting the Remote Desktop Protocol (RDP) on a Windows machine. This step included setting up Kali, installing the crowbar tool, and utilizing a wordlist for password attempts. I analyzed the generated telemetry with Splunk and Atomic Red Team (ATR) to gain insights into the attack process, improving my understanding of attacker behaviors and detection capabilities.
 
-*Ref 5: Brute Force Attack Execution*
+ To start, I set a static IP address and verified connectivity to both google.com and the Splunk server at "192.168.10.10."
+<img src="Images/Adjust IP for Kali.png">
+
+*Ref 21: Adjust IP for Kali.png*
+
+
+I then created a directory called "ad-project" where I will put all the files created and used. Next, I installed the tool Crowbar to be utilized to perform brute force attacks. The description of Crowbar is as follows: Crowbar is a brute force tool which supports OpenVPN, Remote Desktop Protocol, SSH Private Keys and VNC Keys." Please note, this is for educational purposes only.
+<img src="Images/Install Crowbar.png">
+
+*Ref 22: Install Crowbar*
+
+Following, I copied the "rockyou.txt" file into the "ad-project" directory. I then created a file called "passwords.txt" with only the first 20 lines of text from the file as it is 134 million lines long.
+<img src="Images/Create passwords file.png">
+
+*Ref 23: Create passwords file.png*
+
+
+Following I edited the "passwords.txt" file and added the password of the designated target machine. In this case, I targeted the account "tsmith" logged in as a user on the Windows 10 VM with the password of "Basketball1!!!1".
+<img src="Images/Edit passwords file.png">
+
+*Ref 23: Edit passwords file.png*
+
+
+
+
+Before launching the attack, I enabled RDP on the target machine while signed in as the user "tsmith". 
+<img src="Images/Enable RDP.png">
+
+*Ref 24: Enable RDP.png*
+
+
+I then performed the attack on the target machine.
+Explanation of command used:
+-b flag specifies service which is "rdp" in this case
+-u flag specifies the account of interest. In this case, it is "tsmith"
+-C flag specifies using a password list. In this case, it is called "passwords.txt"
+-s flag specifies the source IP of the target machine including the CIDR notation. In this case, it is "192.168.10.100/32"
+
+
+<img src="Images/Attack Command.png">
+
+*Ref 24: Attack Command.png*
 
 ### 7. Brute Force Attack Analyzed using Splunk
+
+
 
 ### 8. Brute Force Attack Analyzed using Atomic Red Team
 
